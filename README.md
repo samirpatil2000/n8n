@@ -14,7 +14,7 @@ This documentation explains how to set up **n8n** with **PostgreSQL** using Dock
 
 ## 2. NGINX Reverse Proxy Configuration
 
-Create `/etc/nginx/sites-available/n8n.conf`:
+Create `/etc/nginx/sites-available/default`:
 
 ```nginx
 server {
@@ -53,7 +53,6 @@ server {
 Then enable and reload:
 
 ```bash
-sudo ln -s /etc/nginx/sites-available/n8n.conf /etc/nginx/sites-enabled/
 sudo nginx -t && sudo systemctl restart nginx
 ```
 
