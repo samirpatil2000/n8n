@@ -106,7 +106,7 @@ services:
       - "5432:5432" # Optional: Expose if you need local access
 
   n8n:
-    image: n8nio/n8n
+    image: n8nio/n8n:1.111.0
     restart: always
     ports:
       - "5678:5678"
