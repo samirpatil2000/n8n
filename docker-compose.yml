@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_POSTGRESDB_USER}
+      POSTGRES_PASSWORD: ${DB_POSTGRESDB_PASSWORD}
+      POSTGRES_DB: ${DB_POSTGRESDB_DATABASE}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432" # Optional: Expose if you need local access
+
+  n8n:
+    image: n8nio/n8n:1.111.0
+    restart: always
+    ports:
+      - "5678:5678"
+    env_file:
+      - .env
+    depends_on:
+      - postgres
+    volumes:
+      - ./n8n_data:/home/node/.n8n
+
+volumes:
+  postgres_data:
+  n8n_data:
